@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+        #costtable{
+            font-size: 15px;
+            text-align: center;
+            float: right;
+            border-style: solid;
+        }
+        #result
+        {
+            color: #770080;
+            text-align: center;
+            font-weight: bold;
+        }
+        #center
+        {
+            margin: auto;
+            width: 40%;
+            padding: 0px 0px 0px 225px;
+        }
+        h1
+        {
+            color: #770080;
+            font-family: Courier New;
+            font-style: italic;
+            text-align: center;
+        }
+        body
+        {
+            background-color: #FFAACC;
+        }
+        </style>
+
+
+    </head>
+    <body>
+        <h1>Book Your Tickets</h1>
+    <form>
+       <div id="center">
+        <table>
+            <tr>
+                <td>
+                    <label for="customerName">Customer Name</label>
+                </td>
+                <td>
+                    <input type="text" name="customerName" id="customerName" placeholder="Enter your name" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="address">Address</label>
+                </td>
+                <td>
+                <textarea name="address" id="Address" required="required" rows="5" cols="20"></textarea>
+ 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="customerEmail">Email ID</label>
+                </td>
+                <td>
+                 <input type="email" name="customerEmail" id="customerEmail" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="customerMobileNumber">Mobile Number</label>
+                </td>
+                <td>
+                  <input type="tel" name="customerMobileNumber" id="customerMobileNumber" required="required" maxlength="10">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="location">Park Location</label>
+                </td>
+                <td>
+                 <input type="radio"  class="radio" name="location" id ="locationDelhi" required="required" value="Delhi"> Delhi
+                  <input type="radio"  class="radio" name="location" id="locationMumbai" required="required" value="Mumbai"> Mumbai
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="dateOfVisit">Date of Visit</label>
+                </td>
+                <td>
+                  <input type="date" name="dateOfVisit" id="dateOfVisit" required="required" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="bookingType">Booking Type</label>
+                </td>
+                <td>
+                    <input list="bookType" name="bookingType" id="bookingType" required="required">
+                   <datalist id="bookType" required="required">
+                   <option value="Normal">
+                   <option value="School">
+                   <option value="Corporate">
+                   </datalist>
+               </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="adults">Adult</label>
+                </td>
+                <td>
+                <input  type="number"  name="adults" id="adults" min="0" max="500" required="required">  
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <label for="children">Children</label>
+                </td>
+                <td>
+                <input  type="number" name="children" id="children" required="required">  
+                </td>
+            </tr>  
+
+        </table>
+       </div>
+       </form>
+       <div id="center">
+            <table>
+                <tr>  
+                    <td>
+                        <input type="submit" name="submit" value="Book Now" id="submit" onclick="costcalculation();">
+                    </td>
+                    <td>
+                        <input type="reset" value="Clear" name ="reset" id="reset">
+                    </td>
+                </tr>
+            </table>
+       </div>
+       <div id="result">
+            
+       </div>
+       <script type="text/javascript">
+        function costcalculation()
+        {
+            var custname = document.getElementById("customerName").value;
+            var adult = document.getElementById("adults").value;
+            var child = document.getElementById("children").value;
+            var bookType = document.getElementById("bookingType").value;
+            
+            var cost = 0;
+            var total_cost = 0;
+            var discount = 0;
+            cost = adult*1500+child*1200;
+            if (bookType == "Normal")
+            {
+                discount = 0;
+            }
+            else if(bookType == "School")
+            {
+                discount = 0.5*cost;
+            }
+            else
+            {
+                discount = 0.25*cost;
+            }
+
+            total_cost = cost - discount;
+        
+        document.getElementById("result").innerHTML="Thank you " + custname +". "+ " Total cost to be paid is " + total_cost;
+        }
+    
+    </script>
+    </body>
+</html>
